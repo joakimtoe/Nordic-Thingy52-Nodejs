@@ -62,7 +62,33 @@ function onDiscover(thingy) {
         });
     });
 
-    
+    var my_conn_param = {
+        min_conn_int  : 7.5,
+        max_conn_int  : 30,
+        slave_latency : 0,
+        sup_timeout   : 3200
+    };
+
+    thingy.conn_param_set(my_conn_param, function(error){
+        console.log(((error) ? error : ''));
+
+        thingy.conn_param_get(function(error, conn_param) {
+            console.log('Conn param:', conn_param);
+        });
+    });
+
+    var my_eddystone = {
+        url_prefix : 3,
+        url  : 'nordicsemi.com'
+    };
+
+    thingy.eddystone_url_set(my_eddystone, function(error){
+        console.log(((error) ? error : ''));
+
+        thingy.eddystone_url_get(function(error, eddystone) {
+            console.log('Eddystone URL:', eddystone);
+        });
+    });
 
   });
 }
